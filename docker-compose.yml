@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  # Hybris
+  app:
+    image: aboulmane/dev-machine:16
+    hostname: spaced-repetition-app
+    container_name: spaced-repetition-app
+    tty: true
+    # if you want to use volumes to sync code between container and local machine
+    volumes:
+      - ~/.ssh:/root/.ssh
+    ports:
+      - '3000:3000'
