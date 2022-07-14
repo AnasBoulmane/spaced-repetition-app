@@ -17,13 +17,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 520px;
-  min-height: 600px;
+  width: 100%;
+  min-height: calc(100vh - 128px);
   background: #161a2b;
   text-align: center;
-  margin: 128px auto;
+  margin: 128px auto 0;
   border-radius: 10px;
   padding-bottom: 32px;
+}
+
+@media (min-width: 620px) {
+  .todo-app {
+    width: 520px;
+    min-height: 600px;
+    margin: 128px auto;
+  }
 }
 
 h1 {
