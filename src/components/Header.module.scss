@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 90%;
+}
+
+.title {
+  flex: 2;
+}
+
+.icons {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  padding-right: 11px;
+  cursor: pointer;
+
+  .icon {
+    color: #fff;
+
+    &-success {
+      color: rgb(8, 167, 87);
+    }
+    &-error {
+      color: rgb(238, 48, 14);
+    }
+  }
+
+  button.icon {
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+    margin: 0 5px;
+  }
+
+  &:last-child {
+    padding-right: 0;
+    padding-left: 11px;
+    justify-content: flex-end;
+  }
+}

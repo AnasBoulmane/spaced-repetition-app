@@ -12,26 +12,26 @@ function App() {
     { _id: 1, name: 'React' },
   ];
   const handleSubjectSelect = (id) => setSubject(subjects.find(({ _id }) => id === _id));
+  const handleBack2Subjects = (id) => setSubject(null);
 
   useEffectAsync(async () => {
     const content = await (await fetch(process.env.REACT_APP_QUIZ_URL)).text();
-    const [_0, ...rowQuestions] = content.split('#### ');
+    const [, ...rowQuestions] = content.split('#### ');
     const questions = rowQuestions.map((row) => {
       const [question, ...options] = row.split(/- |\[Reference/);
       return {
         question,
-        ref: options[4] && `[Reference${options.pop()}`,
-        options,
+        refs: options.filter((opt) => !/\[( |x)\] /.test(opt)).map((ref) => `[Reference${ref}`),
+        options: options.filter((opt) => /\[( |x)\] /.test(opt)),
       };
     });
     setQuestions(questions);
-    console.log(questions[1]);
   }, []);
 
   return (
     <div className="todo-app">
       {!subject && <SubjectList subjects={subjects} onSubjectSelect={handleSubjectSelect} />}
-      {subject && <FlashCardList subject={subject} questions={questions} />}
+      {subject && <FlashCardList subject={subject} questions={questions} onBack2Subjects={handleBack2Subjects} />}
     </div>
   );
 }

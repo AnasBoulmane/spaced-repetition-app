@@ -1,5 +1,7 @@
 import React from 'react';
 import cn from 'classname';
+import PropTypes from 'prop-types';
+import Header from './Header';
 
 import styles from './SubjectList.module.scss';
 
@@ -8,15 +10,20 @@ function SubjectList({ subjects, onSubjectSelect }) {
 
   return (
     <div className={styles['subject-list']}>
-      <h1>Subjects for Today</h1>
+      <Header title="Subjects for Today" />
 
       {subjects.map(({ _id, name, isComplete }) => (
-        <div key={_id} className={cn(styles['subject-item'], { complete: isComplete })} onClick={handleClick(_id)}>
+        <button key={_id} className={cn(styles['subject-item'], { complete: isComplete })} onClick={handleClick(_id)}>
           {name}
-        </div>
+        </button>
       ))}
     </div>
   );
 }
+
+SubjectList.propTypes = {
+  subjects: PropTypes.array.isRequired,
+  onSubjectSelect: PropTypes.func,
+};
 
 export default SubjectList;
