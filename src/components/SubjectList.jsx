@@ -12,6 +12,7 @@ function SubjectList({ subjects, onSubjectSelect }) {
     <div className={styles['subject-list']}>
       <Header title="Subjects for Today" />
 
+      {subjects?.length && <span className="is-sr-only">list of {subjects.length} subjects</span>}
       {subjects.map(({ _id, name, isComplete }) => (
         <button key={_id} className={cn(styles['subject-item'], { complete: isComplete })} onClick={handleClick(_id)}>
           {name}

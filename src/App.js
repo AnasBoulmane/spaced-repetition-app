@@ -12,7 +12,7 @@ function App() {
     { _id: 1, name: 'React' },
   ];
   const handleSubjectSelect = (id) => setSubject(subjects.find(({ _id }) => id === _id));
-  const handleBack2Subjects = (id) => setSubject(null);
+  const handleBack2Subjects = () => setSubject(null);
 
   useEffectAsync(async () => {
     const content = await (await fetch(process.env.REACT_APP_QUIZ_URL)).text();

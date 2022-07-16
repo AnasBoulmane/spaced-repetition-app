@@ -12,7 +12,7 @@ function QuizCard({ question, options, selected, correctOption, refs, isBackDisp
   return (
     <>
       <div title={`the question`} dangerouslySetInnerHTML={{ __html: md.render(`#### ${question}`) }} />
-      {options?.length && <span className="is-sr-only">{options.length} options</span>}
+      {options?.length && <span className="is-sr-only">list of {options.length} options</span>}
       {options?.map((option, index) => (
         <button
           key={index}
