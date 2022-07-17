@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
+import useEffectAsync from 'hooks/use-effect-async';
+import SubjectList from 'pages/SubjectList';
+import FlashCardList from 'pages/FlashCardList';
+
+import useStore from './store';
 import './App.css';
-import useEffectAsync from './hooks/use-effect-async';
-import SubjectList from './components/SubjectList';
-import FlashCardList from './components/FlashCardList';
-import { getSubjects } from 'db/subjects.locale';
 
 function App() {
-  const [subject, setSubject] = useState();
-  const [subjects, setSubjects] = useState([]);
+  const { subject, selectSubjectById } = useStore();
+  const { subjects, fetchSubjects } = useStore();
   const [questions, setQuestions] = useState([]);
 
-  const handleSubjectSelect = (id) => setSubject(subjects.find(({ _id }) => id === _id));
-  const handleBack2Subjects = () => setSubject(null);
+  const handleSubjectSelect = selectSubjectById;
+  const handleBack2Subjects = () => selectSubjectById(null);
 
-  useEffectAsync(async () => {
-    const subjects = await getSubjects();
-    setSubjects(subjects);
-  }, []);
+  useEffectAsync(fetchSubjects, []);
 
   useEffectAsync(async () => {
     const content = await (await fetch(process.env.REACT_APP_QUIZ_URL)).text();

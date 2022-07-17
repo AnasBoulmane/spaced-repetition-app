@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import Header from './Header';
-import QuizCard from './QuizCard';
+import Button from 'components/Button';
+import Header from 'components/Header';
+import QuizCard from 'components/QuizCard';
 import shuffleArray from 'libs/array-shuffle';
 
 import styles from './FlashCardList.module.scss';
 import './prisma.css';
-import Button from './Button';
 
 function FlashCardList({ subject, questions, onBack2Subjects }) {
   const [selected, setSelected] = useState(null);

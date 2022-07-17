@@ -1,7 +1,7 @@
 import React from 'react';
-import cn from 'classname';
 import PropTypes from 'prop-types';
-import Header from './Header';
+import cn from 'classname';
+import Header from 'components/Header';
 
 import styles from './SubjectList.module.scss';
 
@@ -13,11 +13,13 @@ function SubjectList({ subjects, onSubjectSelect }) {
       <Header title="Subjects list" />
 
       {subjects?.length && <span className="is-sr-only">list of {subjects.length} subjects</span>}
-      {subjects.map(({ _id, name, isComplete }) => (
-        <button key={_id} className={cn(styles['subject-item'], { complete: isComplete })} onClick={handleClick(_id)}>
-          {name}
-        </button>
-      ))}
+      <div className={styles['subject-item-container']}>
+        {subjects.map(({ _id, name, isComplete }) => (
+          <button key={_id} className={cn(styles['subject-item'], { complete: isComplete })} onClick={handleClick(_id)}>
+            {name}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
