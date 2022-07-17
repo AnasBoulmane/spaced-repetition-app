@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { RiCloseCircleLine, RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri';
 import cn from 'classname';
 import md from 'libs/markdown-it';
+import Button from './Button';
 
-import styles from './FlashCardList.module.scss';
+import styles from './QuizCard.module.scss';
 
 function QuizCard({ question, options, selected, correctOption, refs, isBackDisplay, onOptionSelect, onSubmit }) {
   const shouldDisplayRefs = isBackDisplay && refs?.length;
@@ -52,9 +53,7 @@ function QuizCard({ question, options, selected, correctOption, refs, isBackDisp
           <div key={index} className={styles['question-ref']} dangerouslySetInnerHTML={{ __html: md.render(ref) }} />
         ))}
 
-      <button className={styles['question-submit']} onClick={onSubmit}>
-        {isBackDisplay ? 'Next Question' : 'Submit'}
-      </button>
+      <Button onClick={onSubmit}>{isBackDisplay ? 'Next Question' : 'Submit'}</Button>
     </>
   );
 }

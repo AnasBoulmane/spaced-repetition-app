@@ -2,10 +2,11 @@ import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import QuizCard from './QuizCard';
+import shuffleArray from 'libs/array-shuffle';
 
 import styles from './FlashCardList.module.scss';
 import './prisma.css';
-import shuffleArray from 'libs/array-shuffle';
+import Button from './Button';
 
 function FlashCardList({ subject, questions, onBack2Subjects }) {
   const [selected, setSelected] = useState(null);
@@ -39,14 +40,12 @@ function FlashCardList({ subject, questions, onBack2Subjects }) {
 
       {(isScoreDisplayed || !question) && (
         <>
-          <div className={styles['quiz-score']}>
+          <div className={styles.score}>
             <span className="is-sr-only">your score on {subject.name} is:</span>
             {Math.round((score / (currentQt || 1)) * 100)} <span>/100</span>
           </div>
 
-          <button className={styles['question-submit']} onClick={onBack2Subjects}>
-            back to subjects
-          </button>
+          <Button onClick={onBack2Subjects}>back to subjects</Button>
         </>
       )}
 
