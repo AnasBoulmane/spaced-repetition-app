@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import QuizCard from './QuizCard';
 
 import styles from './FlashCardList.module.scss';
 import './prisma.css';
+import shuffleArray from 'libs/array-shuffle';
 
 function FlashCardList({ subject, questions, onBack2Subjects }) {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(null);
   const [currentQt, setCurrentQt] = useState(0);
   const [isBackDisplay, setIsBackDisplay] = useState(false);
-  const { question, options, refs } = questions[currentQt] || {};
+  const { question, options: originalOptions, refs } = questions[currentQt] || {};
   const [score, setScore] = useState(0);
   const [isScoreDisplayed, setIsScoreDisplayed] = useState(false);
 
+  const options = useMemo(() => shuffleArray(originalOptions), [currentQt]);
   const correctOption = options.findIndex((opt) => /\[(x)\] /.test(opt));
 
   const handleOptionSelect = setSelected;

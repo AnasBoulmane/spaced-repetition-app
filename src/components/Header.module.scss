@@ -2,11 +2,14 @@
   display: flex;
   align-items: center;
   margin: auto;
-  width: 90%;
+  width: 100%;
+  padding: 8px 0;
+  margin-bottom: 24px;
 }
 
 .title {
   flex: 2;
+  margin: 0;
 }
 
 .icons {

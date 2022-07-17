@@ -2,7 +2,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### 💻 Preview
-![Spaced repetition app](/preview.PNG?raw=true)
+![Spaced repetition app](/preview.png?raw=true)
 
 <br>
 

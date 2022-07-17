@@ -10,7 +10,7 @@ function SubjectList({ subjects, onSubjectSelect }) {
 
   return (
     <div className={styles['subject-list']}>
-      <Header title="Subjects for Today" />
+      <Header title="Subjects list" />
 
       {subjects?.length && <span className="is-sr-only">list of {subjects.length} subjects</span>}
       {subjects.map(({ _id, name, isComplete }) => (

@@ -18,7 +18,7 @@ body {
   text-align: center;
   margin: 28px auto 0;
   border-radius: 10px;
-  padding-bottom: 32px;
+  padding: 24px;
 }
 
 @media (min-width: 620px) {
