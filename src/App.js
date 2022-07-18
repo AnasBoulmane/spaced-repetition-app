@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useEffectAsync from 'hooks/use-effect-async';
+import useAsyncEffect from 'hooks/use-async-effect';
 import SubjectList from 'pages/SubjectList';
 import FlashCardList from 'pages/FlashCardList';
 
@@ -14,9 +14,9 @@ function App() {
   const handleSubjectSelect = selectSubjectById;
   const handleBack2Subjects = () => selectSubjectById(null);
 
-  useEffectAsync(fetchSubjects, []);
+  useAsyncEffect(fetchSubjects, []);
 
-  useEffectAsync(async () => {
+  useAsyncEffect(async () => {
     const content = await (await fetch(process.env.REACT_APP_QUIZ_URL)).text();
     const [, ...rowQuestions] = content.split('#### ');
     const questions = rowQuestions.map((row) => {
@@ -27,6 +27,9 @@ function App() {
         question,
         refs: options.filter((opt) => !/\[( |x)\] /.test(opt)).map((ref) => `[Reference${ref}`),
         options: options.filter((opt) => /\[( |x)\] /.test(opt)),
+        interval: 0,
+        repetition: 0,
+        efactor: 2.5,
       };
     });
     setQuestions(questions);

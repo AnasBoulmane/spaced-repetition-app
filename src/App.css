@@ -24,7 +24,7 @@ body {
 @media (min-width: 620px) {
   .todo-app {
     width: 520px;
-    min-height: 600px;
+    min-height: auto;
     margin: 128px auto;
   }
 }

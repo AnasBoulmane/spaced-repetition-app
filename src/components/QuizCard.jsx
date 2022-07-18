@@ -10,6 +10,7 @@ import styles from './QuizCard.module.scss';
 function QuizCard({ question, options, selected, correctOption, refs, isBackDisplay, onOptionSelect, onSubmit }) {
   const shouldDisplayRefs = isBackDisplay && refs?.length;
   const handleOptionSelect = (selected) => () => !isBackDisplay && onOptionSelect && onOptionSelect(selected);
+  const isCorrectResponse = selected === correctOption;
   return (
     <>
       <div title={`the question`} dangerouslySetInnerHTML={{ __html: md.render(`#### ${question}`) }} />
@@ -53,7 +54,51 @@ function QuizCard({ question, options, selected, correctOption, refs, isBackDisp
           <div key={index} className={styles['question-ref']} dangerouslySetInnerHTML={{ __html: md.render(ref) }} />
         ))}
 
-      <Button onClick={onSubmit}>{isBackDisplay ? 'Next Question' : 'Submit'}</Button>
+      {isBackDisplay ? (
+        isCorrectResponse ? (
+          <div className={styles['btn-group']}>
+            <Button
+              className={styles.btn}
+              onClick={() => onSubmit(3)}
+              title="hard: correct response recalled with serious difficulty"
+            >
+              hard
+            </Button>
+            <Button
+              className={styles.btn}
+              onClick={() => onSubmit(4)}
+              title="good: correct response after a hesitation"
+            >
+              good
+            </Button>
+            <Button className={styles.btn} onClick={() => onSubmit(5)} title="easy: perfect response.">
+              easy
+            </Button>
+          </div>
+        ) : (
+          <div className={styles['btn-group']}>
+            <Button className={styles.btn} onClick={() => onSubmit(0)} title="complete blackout">
+              blackout
+            </Button>
+            <Button
+              className={styles.btn}
+              onClick={() => onSubmit(1)}
+              title="incorrect response; the correct one remembered."
+            >
+              remembered
+            </Button>
+            <Button
+              className={styles.btn}
+              onClick={() => onSubmit(2)}
+              title="incorrect response; where the correct one seemed easy to recall"
+            >
+              easy recall
+            </Button>
+          </div>
+        )
+      ) : (
+        <Button onClick={onSubmit}>{isBackDisplay ? 'Next Question' : 'Submit'}</Button>
+      )}
     </>
   );
 }

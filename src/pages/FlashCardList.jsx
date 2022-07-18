@@ -21,7 +21,7 @@ function FlashCardList({ subject, questions, onBack2Subjects }) {
 
   const handleOptionSelect = setSelected;
   const handleBackClick = isScoreDisplayed ? null : () => (currentQt ? setIsScoreDisplayed(true) : onBack2Subjects());
-  const handleSubmit = () => {
+  const handleSubmit = (superMemoGrade) => {
     if (isBackDisplay) {
       if (selected === correctOption) setScore(score + 1);
       setCurrentQt(currentQt + 1);

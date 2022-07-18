@@ -84,3 +84,35 @@
     color: rgb(238, 48, 14);
   }
 }
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 -8px;
+
+  @media (min-width: 500px) {
+    flex-wrap: nowrap;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 24px 8px 0;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+
+    &:nth-child(3n + 2) {
+      width: calc(50% - 16px);
+      background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    }
+
+    &:nth-child(3n + 1) {
+      width: calc(50% - 16px);
+      background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
+    }
+
+    @media (min-width: 500px) {
+      flex: 1;
+    }
+  }
+}
